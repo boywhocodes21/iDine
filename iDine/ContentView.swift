@@ -13,13 +13,17 @@ struct ContentView: View {
         NavigationView {
             List {
                 ForEach(menu){section in
-                    Text("Hello, world!")
-                    Text("Hello, world!")
-                    Text("Hello, world!")
+                    Section(header : Text(section.name)){
+                        ForEach(section.items){ item in
+                            NavigationLink(destination : ItemDetail(item:item)){
+                                ItemRow(item:item)
+                            }
+                        }
+                    }
                 }
-                
             }
             .navigationTitle("Menu")
+            .listStyle(GroupedListStyle())
         }
     }
 }
